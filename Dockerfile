@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libgdal-dev
 
 RUN pip install rasterio
-RUN pip install voropy
+# RUN pip install voropy
 
 RUN git clone https://github.com/j08lue/pycpt.git && \
     cd pycpt && \
@@ -22,25 +22,25 @@ RUN git clone https://github.com/j08lue/pycpt.git && \
     cd .. && \
     rm -rf pycpt
 
-RUN mkdir /root/.config/pipdate
+# RUN mkdir /root/.config/pipdate
 
-WORKDIR /live
-COPY config.ini .
-RUN mv config.ini /root/.config/pipdate
+# WORKDIR /live
+# COPY config.ini .
+# RUN mv config.ini /root/.config/pipdate
 
-WORKDIR /live/lib
-RUN git clone https://github.com/Geodels/fillit.git && \
-    cd fillit && \
-    python setup.py install && \
-    mv fillit/Notebooks .. && \
-    cd .. && \
-    rm -rf fillit/* && \
-    mv Notebooks fillit
+# WORKDIR /live/lib
+# RUN git clone https://github.com/Geodels/fillit.git && \
+#     cd fillit && \
+#     python setup.py install && \
+#     mv fillit/Notebooks .. && \
+#     cd .. && \
+#     rm -rf fillit/* && \
+#     mv Notebooks fillit
 
-WORKDIR /live/lib
-RUN git clone https://github.com/Geodels/gSCAPE.git && \
-    cd gSCAPE && \
-    python setup.py install
+# WORKDIR /live/lib
+# RUN git clone https://github.com/Geodels/gSCAPE.git && \
+#     cd gSCAPE && \
+#     python setup.py install
 
 # note we also use xvfb which is required for viz
 ENTRYPOINT ["/usr/local/bin/tini", "--", "xvfbrun.sh"]
