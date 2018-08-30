@@ -14,6 +14,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libgdal-dev
 
 RUN pip install rasterio
+RUN pip install voropy
 
 RUN git clone https://github.com/j08lue/pycpt.git && \
     cd pycpt && \
