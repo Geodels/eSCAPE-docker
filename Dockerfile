@@ -31,7 +31,7 @@ WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/fillit.git && \
     cd fillit && \
     python setup.py install && \
-    mv fillit/Notebooks ..
+    mv fillit/Notebooks .. && \
     cd .. && \
     rm -rf fillit/* && \
     mv Notebooks fillit
