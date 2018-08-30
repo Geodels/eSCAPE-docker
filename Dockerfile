@@ -31,11 +31,11 @@ RUN git clone https://github.com/j08lue/pycpt.git && \
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/fillit.git && \
     cd fillit && \
-    python Notebookssetup.py install && \
+    python setup.py install && \
     mv fillit/Notebooks .. && \
     cd .. && \
     rm -rf fillit/* && \
-    mv  fillit
+    mv  Notebooks fillit
 
 # WORKDIR /live/lib
 # RUN git clone https://github.com/Geodels/gSCAPE.git && \
