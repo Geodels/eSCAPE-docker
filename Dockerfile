@@ -39,7 +39,9 @@ RUN git clone https://github.com/Geodels/fillit.git && \
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/gSCAPE.git && \
     cd gSCAPE && \
-    python setup.py install
+    python setup.py install && \
+    cd .. && \
+    rm -rf gSCAPE
 
 # note we also use xvfb which is required for viz
 ENTRYPOINT ["/usr/local/bin/tini", "--", "xvfbrun.sh"]
