@@ -37,10 +37,10 @@ RUN git clone https://github.com/Geodels/fillit.git && \
     rm -rf fillit/* && \
     mv  Notebooks fillit
 
-# WORKDIR /live/lib
-# RUN git clone https://github.com/Geodels/gSCAPE.git && \
-#     cd gSCAPE && \
-#     python setup.py install
+WORKDIR /live/lib
+RUN git clone https://github.com/Geodels/gSCAPE.git && \
+    cd gSCAPE && \
+    python setup.py install
 
 # note we also use xvfb which is required for viz
 ENTRYPOINT ["/usr/local/bin/tini", "--", "xvfbrun.sh"]
