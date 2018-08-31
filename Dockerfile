@@ -2,31 +2,7 @@ FROM geodels/geodels-libs:latest
 
 RUN find /live/lib/LavaVu/notebooks -name \*.ipynb  -print0 | xargs -0 jupyter trust
 
-RUN pip install pygeotools
-RUN pip install ruamel.yaml
-
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends apt-utils
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    python-numpy \
-    gdal-bin \
-    libgdal-dev
-
-RUN pip install rasterio
-
-RUN git clone https://github.com/j08lue/pycpt.git && \
-    cd pycpt && \
-    python setup.py install && \
-    cd .. && \
-    rm -rf pycpt
-
-RUN mkdir /root/.config/pipdate
-
-WORKDIR /live
-COPY config.ini .
-RUN mv config.ini /root/.config/pipdate
-
+# install FILLIT
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/fillit.git && \
     cd fillit && \
@@ -36,12 +12,15 @@ RUN git clone https://github.com/Geodels/fillit.git && \
     rm -rf fillit/* && \
     mv  Notebooks fillit
 
+# install gSCAPE
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/gSCAPE.git && \
     cd gSCAPE && \
     python setup.py install && \
     cd .. && \
     rm -rf gSCAPE
+
+# install gSCAPE-demo
 
 # note we also use xvfb which is required for viz
 ENTRYPOINT ["/usr/local/bin/tini", "--", "xvfbrun.sh"]
