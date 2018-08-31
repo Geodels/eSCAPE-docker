@@ -21,11 +21,11 @@ RUN git clone https://github.com/j08lue/pycpt.git && \
     cd .. && \
     rm -rf pycpt
 
-# RUN mkdir /root/.config/pipdate
+RUN mkdir /root/.config/pipdate
 
-# WORKDIR /live
-# COPY config.ini .
-# RUN mv config.ini /root/.config/pipdate
+WORKDIR /live
+COPY config.ini .
+RUN mv config.ini /root/.config/pipdate
 
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/fillit.git && \
