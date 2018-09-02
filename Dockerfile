@@ -23,7 +23,7 @@ RUN git clone https://github.com/Geodels/gSCAPE.git && \
 # install gSCAPE-demo
 WORKDIR /live
 RUN git clone https://github.com/Geodels/gSCAPE-demo.git && \
-    mv /live/gSCAPE-demo /live/gSCAPE
+    mv /live/gSCAPE-demo /live/notebooks
 
 
 # note we also use xvfb which is required for viz
