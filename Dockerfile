@@ -22,7 +22,9 @@ RUN git clone https://github.com/Geodels/gSCAPE.git && \
 
 # install gSCAPE-demo
 WORKDIR /live
-RUN git clone https://github.com/Geodels/gSCAPE-demo.git
+RUN git clone https://github.com/Geodels/gSCAPE-demo.git && \
+    mv /live/gSCAPE-demo /live/gSCAPE
+
 
 # note we also use xvfb which is required for viz
 ENTRYPOINT ["/usr/local/bin/tini", "--", "xvfbrun.sh"]
