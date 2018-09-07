@@ -6,6 +6,7 @@ RUN find /live/lib/LavaVu/notebooks -name \*.ipynb  -print0 | xargs -0 jupyter t
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/fillit.git && \
     cd fillit && \
+    export F90=gfortran && \
     python setup.py install && \
     mv fillit/Notebooks .. && \
     cd .. && \
@@ -16,6 +17,7 @@ RUN git clone https://github.com/Geodels/fillit.git && \
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/gSCAPE.git && \
     cd gSCAPE && \
+    export F90=gfortran && \
     python setup.py install && \
     cd .. && \
     rm -rf gSCAPE
