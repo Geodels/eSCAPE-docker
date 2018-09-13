@@ -13,19 +13,19 @@ RUN git clone https://github.com/Geodels/fillit.git && \
     rm -rf fillit/* && \
     mv  Notebooks fillit
 
-# install gSCAPE
+# install eSCAPE
 WORKDIR /live/lib
-RUN git clone https://github.com/Geodels/gSCAPE.git && \
-    cd gSCAPE && \
+RUN git clone https://github.com/Geodels/eSCAPE.git && \
+    cd eSCAPE && \
     export F90=gfortran && \
     python setup.py install && \
     cd .. && \
-    rm -rf gSCAPE
+    rm -rf eSCAPE
 
-# install gSCAPE-demo
+# install eSCAPE-demo
 WORKDIR /live
-RUN git clone https://github.com/Geodels/gSCAPE-demo.git && \
-    mv /live/gSCAPE-demo /live/notebooks
+RUN git clone https://github.com/Geodels/eSCAPE-demo.git && \
+    mv /live/eSCAPE-demo /live/notebooks
 
 
 # note we also use xvfb which is required for viz
