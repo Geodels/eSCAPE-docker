@@ -1,5 +1,5 @@
-# gSCAPE-docker
+# eSCAPE-docker
 
-gSCAPE Docker Container with all Dependencies
+eSCAPE Docker Container with all Dependencies
 
 https://hub.docker.com/u/geodels/
