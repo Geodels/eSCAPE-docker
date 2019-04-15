@@ -8,13 +8,12 @@ RUN git clone https://github.com/Geodels/fillit.git && \
     cd fillit && \
     export F90=gfortran && \
     cd src && \
-    make all 
-RUN cd fillit && \    
-    export F90=gfortran && \
+    make all  && \
+    cd .. && \
     python setup.py install && \
     cd .. && \
     rm -rf fillit
-    
+
 # install eSCAPE
 WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/eSCAPE.git && \
