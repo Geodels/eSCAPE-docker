@@ -9,7 +9,9 @@ RUN git clone https://github.com/Geodels/fillit.git && \
     export F90=gfortran && \
     cd src && \
     make all && \
+    ls && \
     cd .. && \
+    ls && \
     python setup.py install && \
     cd .. && \
     rm -rf fillit
