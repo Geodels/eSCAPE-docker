@@ -19,6 +19,8 @@ WORKDIR /live/lib
 RUN git clone https://github.com/Geodels/eSCAPE.git && \
     cd eSCAPE && \
     export F90=gfortran && \
+    export PETSC_DIR=/live/lib/petsc && \
+    export PETSC_ARCH=arch-linux2-c-opt && \
     python setup.py install && \
     cd .. && \
     rm -rf eSCAPE
