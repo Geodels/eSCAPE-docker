@@ -8,7 +8,9 @@ RUN git clone https://github.com/Geodels/fillit.git && \
     cd fillit && \
     export F90=gfortran && \
     cd src && \
-    make all && \
+    make all 
+    
+RUN cd fillit/src && \    
     ls && \
     cd .. && \
     ls && \
