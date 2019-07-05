@@ -1,0 +1,46 @@
+FROM geodels/geodels-base:python3
+MAINTAINER Tristan Salles
+
+ENV PETSC_DIR=/opt/petsc
+ENV PETSC_ARCH=arch-linux-c-opt
+
+# install FILLIT
+WORKDIR /workspace/lib
+RUN export F90=gfortran && \
+  git clone -b python3 https://github.com/Geodels/fillit.git  && \
+  cd fillit  && \
+  python3 setup.py install
+
+# install eSCAPE
+WORKDIR /workspace/lib
+RUN git clone -b petsc3.11.2 https://github.com/Geodels/eSCAPE.git && \
+    cd eSCAPE && \
+    export F90=gfortran && \
+    export PETSC_DIR=/opt/petsc && \
+    export PETSC_ARCH=arch-linux-c-opt && \
+    python setup.py install && \
+    cd .. && \
+    rm -rf eSCAPE
+
+# install eSCAPE-demo
+WORKDIR /live
+RUN git clone -b petsc3.11.2 https://github.com/Geodels/eSCAPE-demo.git && \
+    mv /live/eSCAPE-demo /live/notebooks
+
+# setup space for working in
+VOLUME /live/share
+WORKDIR /live
+
+ENV LD_LIBRARY_PATH=/live/lib/:/live/share
+
+EXPOSE 8888
+ENV TINI_VERSION v0.18.0
+ENTRYPOINT ["/usr/local/bin/tini", "--"]
+
+EXPOSE 9999
+
+# note we use xvfb which to mimic the X display for lavavu
+ENTRYPOINT ["/usr/local/bin/xvfbrun.sh"]
+
+# launch notebook
+CMD /usr/local/bin/run-jupyter.sh
